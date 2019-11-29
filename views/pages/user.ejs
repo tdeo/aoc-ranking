@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+  <div class="col">
+    <h1>Welcome, <%= user.name %> !</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Day</th>
+          <th scope="col">Start time</th>
+          <th scope="col">End time</th>
+          <th scope="col">Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% solutions.sort((a, b) => (a.day - b.day)).forEach((solution) => { %>
+          <tr>
+            <th scope="row"><%= solution.day %></th>
+            <td>
+              <% if (solution.startedAt) { %>
+                <%= solution.startedAt %>
+              <% } else { %>
+                <form action="/start/<%=user.id%>/<%=solution.day%>" method="POST">
+                  <button class="btn btn-primary">Start&nbsp;!</button>
+                </form>
+              <% } %>
+            </td>
+            <td>
+              <% if (solution.startedAt) { %>
+                <% if (solution.finishedAt) { %>
+                  <%= solution.finishedAt %>
+                <% } else { %>
+                  <form action="/finish/<%=user.id%>/<%=solution.day%>" method="POST">
+                    <button class="btn btn-primary">Finish&nbsp;!</button>
+                  </form>
+                <% } %>
+              <% } else { %>
+                -
+              <% } %>
+            </td>
+            <td>
+              <% if (solution.startedAt && solution.finishedAt) { %>
+                <%= Math.round((solution.finishedAt - solution.startedAt) / 1000) %>
+              <% } else { %>
+                -
+              <% } %>
+            </td>
+          <% }) %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

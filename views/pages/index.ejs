@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+  <div class="col">
+    <h1>Welcome !</h1>
+    Please click on your name to continue:
+    <% users.forEach((user) => { %>
+      <a href="/users/<%= user.id %>">
+        <button class="btn btn-primary">
+          <%= user.name %>
+        </button>
+      </a>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
