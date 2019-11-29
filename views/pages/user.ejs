@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col">
     <h1>Welcome, <%= user.name %> !</h1>
-    <table class="table">
+    <table class="table table-sm">
       <thead>
         <tr>
           <th scope="col">Day</th>
@@ -21,7 +21,7 @@
                 <%= solution.startedAt %>
               <% } else { %>
                 <form action="/start/<%=user.id%>/<%=solution.day%>" method="POST">
-                  <button class="btn btn-primary">Start&nbsp;!</button>
+                  <button class="btn btn-sm btn-primary">Start&nbsp;!</button>
                 </form>
               <% } %>
             </td>
@@ -31,7 +31,7 @@
                   <%= solution.finishedAt %>
                 <% } else { %>
                   <form action="/finish/<%=user.id%>/<%=solution.day%>" method="POST">
-                    <button class="btn btn-primary">Finish&nbsp;!</button>
+                    <button class="btn btn-sm btn-primary">Finish&nbsp;!</button>
                   </form>
                 <% } %>
               <% } else { %>
